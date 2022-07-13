@@ -1,15 +1,11 @@
 {
-  "name": "next-firebase-starter",
+  "name": "reddit-clone",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy:rules": "firebase deploy --only firestore:rules",
-    "deploy:storageRules": "firebase deploy --only storage:rules",
-    "deploy:index": "firebase deploy --only firestore:indexes",
-    "start:emulators": "firebase emulators:start --import=./firebase_emulators_data --export-on-exit=./firebase_emulators_data",
     "lint": "next lint",
     "prettier": "prettier --cache --check .",
     "fix": "run-s -l -c fix:lint fix:prettier",
@@ -18,13 +14,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "firebase": "9.9.0",
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "recoil": "0.7.4",
-    "swr": "1.3.0",
-    "zod": "3.17.3"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@types/node": "16.0.0",
