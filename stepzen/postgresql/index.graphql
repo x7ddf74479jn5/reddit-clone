@@ -32,12 +32,7 @@ type Vote {
 
 type Query {
   getCommentList: [Comment]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "comment"
-      configuration: "postgresql_config"
-    )
+    @dbquery(type: "postgresql", schema: "public", table: "comment", configuration: "postgresql_config")
   """
   This query is an example of how to simply paginate your responses.
   """
@@ -73,27 +68,10 @@ type Query {
       """
       configuration: "postgresql_config"
     )
-  getPostList: [Post]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "post"
-      configuration: "postgresql_config"
-    )
+  getPostList: [Post] @dbquery(type: "postgresql", schema: "public", table: "post", configuration: "postgresql_config")
   getSubredditList: [Subreddit]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "subreddit"
-      configuration: "postgresql_config"
-    )
-  getVoteList: [Vote]
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "vote"
-      configuration: "postgresql_config"
-    )
+    @dbquery(type: "postgresql", schema: "public", table: "subreddit", configuration: "postgresql_config")
+  getVoteList: [Vote] @dbquery(type: "postgresql", schema: "public", table: "vote", configuration: "postgresql_config")
 }
 
 type Mutation {
@@ -107,14 +85,7 @@ type Mutation {
     subreddit_id: ID!
     title: String!
     username: String!
-  ): Post
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "post"
-      dml: INSERT
-      configuration: "postgresql_config"
-    )
+  ): Post @dbquery(type: "postgresql", schema: "public", table: "post", dml: INSERT, configuration: "postgresql_config")
   """
   In this mutation example you can see how to do a mutation to delete data from the database.
   """
@@ -126,12 +97,5 @@ type Mutation {
     subreddit_id: ID!
     title: String!
     username: String!
-  ): Post
-    @dbquery(
-      type: "postgresql"
-      schema: "public"
-      table: "post"
-      dml: DELETE
-      configuration: "postgresql_config"
-    )
+  ): Post @dbquery(type: "postgresql", schema: "public", table: "post", dml: DELETE, configuration: "postgresql_config")
 }
