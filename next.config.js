@@ -10,6 +10,9 @@ const nextConfig = {
   compiler: {
     reactRemoveProperties: true,
   },
+  images: {
+    domains: ["avatars.dicebear.com"],
+  },
 };
 
 module.exports = nextConfig;
