@@ -1,10 +1,14 @@
 import "@/styles/global.css";
 
 import type { CustomAppProps } from "next/app";
-import { memo } from "react";
+import { SessionProvider } from "next-auth/react";
 
-const App = ({ Component, pageProps }: CustomAppProps) => {
-  return <Component {...pageProps} />;
+const App = ({ Component, pageProps: { session, ...pageProps } }: CustomAppProps) => {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />;
+    </SessionProvider>
+  );
 };
 
-export default memo(App);
+export default App;
