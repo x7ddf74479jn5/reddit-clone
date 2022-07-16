@@ -71,6 +71,15 @@ type Query {
   getPostList: [Post] @dbquery(type: "postgresql", schema: "public", table: "post", configuration: "postgresql_config")
   getSubredditList: [Subreddit]
     @dbquery(type: "postgresql", schema: "public", table: "subreddit", configuration: "postgresql_config")
+  getSubredditListByTopic(topic: String!): [Subreddit]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "subreddit" where "topic" = $1
+      """
+      configuration: "postgresql_config"
+    )
   getVoteList: [Vote] @dbquery(type: "postgresql", schema: "public", table: "vote", configuration: "postgresql_config")
 }
 
@@ -86,6 +95,10 @@ type Mutation {
     title: String!
     username: String!
   ): Post @dbquery(type: "postgresql", schema: "public", table: "post", dml: INSERT, configuration: "postgresql_config")
+
+  insertSubreddit(topic: String!): Subreddit
+    @dbquery(type: "postgresql", schema: "public", table: "subreddit", dml: INSERT, configuration: "postgresql_config")
+
   """
   In this mutation example you can see how to do a mutation to delete data from the database.
   """
