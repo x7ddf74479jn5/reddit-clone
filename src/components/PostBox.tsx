@@ -3,6 +3,7 @@ import { LinkIcon, PhotographIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { Avatar } from "@/components/Avatar";
 import { ADD_POST, ADD_SUBREDDIT } from "@/graphql/mutations";
@@ -36,6 +37,7 @@ export const PostBox = () => {
 
   const handleFormSubmit = handleSubmit(async (formData) => {
     console.log(formData);
+    const notification = toast.loading("Creating new post...");
 
     try {
       const {
@@ -99,7 +101,16 @@ export const PostBox = () => {
       setValue("postImage", "");
       setValue("postTitle", "");
       setValue("subreddit", "");
-    } catch (error) {}
+
+      toast.success("New post created!", {
+        id: notification,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("Something went wrong!", {
+        id: notification,
+      });
+    }
   });
 
   return (
