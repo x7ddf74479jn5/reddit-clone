@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 
 type AvatarProps = {
   seed?: string | undefined;
-  large?: string | undefined;
+  large?: boolean;
 };
 
 export const Avatar: React.FC<AvatarProps> = ({ seed, large }) => {
