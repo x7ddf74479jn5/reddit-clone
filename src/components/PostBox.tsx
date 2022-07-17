@@ -17,7 +17,11 @@ type FormData = {
   subreddit: string;
 };
 
-export const PostBox = () => {
+type PostBoxProps = {
+  subreddit?: string;
+};
+
+export const PostBox: React.FC<PostBoxProps> = ({ subreddit }) => {
   const { data: session } = useSession();
   const [addPost] = useMutation(ADD_POST, {
     refetchQueries: [GET_ALL_POSTS, "getPostList"],
@@ -47,7 +51,7 @@ export const PostBox = () => {
       } = await client.query({
         query: GET_SUBREDDIT_BY_TOPIC,
         variables: {
-          topic: formData.subreddit,
+          topic: subreddit || formData.subreddit,
         },
       });
 
@@ -125,7 +129,13 @@ export const PostBox = () => {
           disabled={!session}
           className="flex-1 rounded-md bg-gray-50 p-2 pl-5 outline-none"
           type="text"
-          placeholder={session ? "Crete a post by entering title!" : "Sign in to post"}
+          placeholder={
+            session
+              ? subreddit
+                ? `Create a post by r/${subreddit}`
+                : "Crete a post by entering title!"
+              : "Sign in to post"
+          }
         />
 
         <PhotographIcon
@@ -147,15 +157,17 @@ export const PostBox = () => {
             />
           </div>
 
-          <div className="flex items-center px-2">
-            <p className="min-w-[90px]">Subreddit:</p>
-            <input
-              {...register("subreddit", { required: true })}
-              className="m-2 flex-1 bg-blue-50 p-2 outline-none"
-              type="text"
-              placeholder="i.e. reactjs"
-            />
-          </div>
+          {!subreddit && (
+            <div className="flex items-center px-2">
+              <p className="min-w-[90px]">Subreddit:</p>
+              <input
+                {...register("subreddit", { required: true })}
+                className="m-2 flex-1 bg-blue-50 p-2 outline-none"
+                type="text"
+                placeholder="i.e. reactjs"
+              />
+            </div>
+          )}
 
           {isImageBoxOpen && (
             <div className="flex items-center px-2">
