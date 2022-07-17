@@ -1,6 +1,7 @@
 import type { CustomNextPage } from "next";
 import Head from "next/head";
 
+import { Feed } from "@/components/Feed";
 import { PostBox } from "@/components/PostBox";
 
 const IndexPage: CustomNextPage = () => {
@@ -11,6 +12,10 @@ const IndexPage: CustomNextPage = () => {
       </Head>
 
       <PostBox />
+
+      <div className="flex">
+        <Feed />
+      </div>
     </div>
   );
 };

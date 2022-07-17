@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 type AvatarProps = {
-  seed?: boolean;
-  large?: string;
+  seed?: string | undefined;
+  large?: string | undefined;
 };
 
 export const Avatar: React.FC<AvatarProps> = ({ seed, large }) => {
