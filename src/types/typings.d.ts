@@ -1,4 +1,4 @@
-type Comment = {
+type TComment = {
   created_at: string;
   id: number;
   post_id: number;
@@ -29,6 +29,6 @@ type Post = {
   title: string;
   username: string;
   vote: Vote[];
-  comments: Comment[];
+  comments: TComment[];
   subreddit: Subreddit[];
 };
