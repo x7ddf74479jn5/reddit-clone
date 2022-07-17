@@ -23,7 +23,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50  flex bg-white px-4 py-2 shadow-sm">
+    <div className="sticky top-0 z-50  flex items-center bg-white px-4 py-2 shadow-sm">
       <div className="relative h-10 w-20 shrink-0 cursor-pointer">
         <Image src="/images/Reddit_logo_new.svg.png" objectFit="contain" layout="fill" alt="" />
       </div>
