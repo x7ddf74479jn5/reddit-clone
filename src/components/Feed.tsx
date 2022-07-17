@@ -7,7 +7,7 @@ type FeedProps = {
   topic?: string;
 };
 
-export const Feed: React.FC<FeedProps> = ({ topic = "reactjs" }) => {
+export const Feed: React.FC<FeedProps> = ({ topic }) => {
   const params = !topic
     ? { query: GET_ALL_POSTS, options: undefined }
     : {
