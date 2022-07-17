@@ -18,14 +18,14 @@ const Subreddit = () => {
           </div>
           <div className="py-2">
             <h1 className="text-3xl font-semibold">Welcome to the r/{topic} subreddit</h1>
-            <p className="text-sm text-gray-400">r{topic}</p>
+            <p className="text-sm text-gray-400">r/{topic}</p>
           </div>
         </div>
       </div>
 
       <div className="mx-auto mt-8 max-w-5xl pb-10">
         <PostBox subreddit={topic as string} />
-        <Feed />
+        <Feed topic={topic as string} />
       </div>
     </div>
   );
