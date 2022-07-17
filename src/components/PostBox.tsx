@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 import { Avatar } from "@/components/Avatar";
 import { ADD_POST, ADD_SUBREDDIT } from "@/graphql/mutations";
-import { GET_SUBREDDIT_BY_TOPIC } from "@/graphql/queries";
+import { GET_ALL_POSTS, GET_SUBREDDIT_BY_TOPIC } from "@/graphql/queries";
 import { client } from "@/lib/apollo";
 
 type FormData = {
@@ -19,7 +19,9 @@ type FormData = {
 
 export const PostBox = () => {
   const { data: session } = useSession();
-  const [addPost] = useMutation(ADD_POST);
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries: [GET_ALL_POSTS, "getPostList"],
+  });
   const [addSubreddit] = useMutation(ADD_SUBREDDIT);
 
   const {
